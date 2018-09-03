@@ -262,9 +262,8 @@ class Discriminator_2D(nn.Module):
     def forward(self, img):
         out = self.cnn(img)
         out = out.view(-1, 256* self.fc_size* self.fc_size)
-        out = self.fc1(out)
-        out = self.leaky(out)
-        out = self.fc2(out)
+        out = self.leaky(self.fc1(out))
+        out = self.leaky(self.fc2(out))
         return out
 
 
